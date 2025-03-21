@@ -28,5 +28,5 @@ class Bank2(small_town_teller.Bank, PersistenceUtils):
         self.write_pickle("/Users/kunle/Projects/PythonFundamentals.Exercises.Part10/accounts.pickle", self.account)
 
     def load_data(self):
-        self.load_pickle("/Users/kunle/Projects/PythonFundamentals.Exercises.Part10/customer.pickle")
-        self.load_pickle("/Users/kunle/Projects/PythonFundamentals.Exercises.Part10/accounts.pickle")
+        self.customer = self.load_pickle("/Users/kunle/Projects/PythonFundamentals.Exercises.Part10/customer.pickle")
+        self.account = self.load_pickle("/Users/kunle/Projects/PythonFundamentals.Exercises.Part10/accounts.pickle")
