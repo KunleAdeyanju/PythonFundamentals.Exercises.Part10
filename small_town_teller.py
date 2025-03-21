@@ -1,13 +1,13 @@
 
 class Person:
     def __init__(self, id, first_name, last_name):
-        self.id = id
+        self.id = id                    # has to be unique
         self.first_name = first_name
         self.last_name = last_name
 
 class Account:
     def __init__(self, number, type, owner, balance):
-        self.number = number
+        self.number = number            # has to be unique
         self.type = type
         self.owner = owner
         self.balance = balance
@@ -26,20 +26,37 @@ class Bank:
 
 
     def new_account(self, account: Account) -> None:
-        if account.owner not in self.account:
-            # raise
-            pass
+        if account.owner.id not in self.customer:
+            raise ValueError(f"{account.owner.id} doesn't exist in the the system")
+        elif account.number in self.account:
+            raise ValueError(f"{account.number} is already being used by another account")
         else:
-            self.new_account[]
+            self.new_account[account.number] = account
 
-    def remove_account():
-        pass
+    def remove_account(self, account: Account) -> None:
+        if account.number not in self.account:
+            raise ValueError(f"{account.number} doesn't exist in the the system")
+        else:
+            self.account = {y: x for y, x in self.account.items() if x != account}
 
-    def deposit():
-        pass
+    def deposit(self, account_num: int, depo: float):
+        if account_num in self.account:
+            account = self.account.get(account_num)
+            account.balance += round(depo, 2)
+        else:
+            raise ValueError(f"Haveing trouble finding this account")
+ 
 
-    def withdrawal():
-        pass
+    def withdrawal(self, account_num: int, withd: float):
+        if account_num in self.account:
+            account = self.account.get(account_num)
+            account.balance -= round(withd, 2)
+        else:
+            raise ValueError(f"Haveing trouble finding this account")
 
-    def balance_inquiry():
-        pass
+    def balance_inquiry(self, account_num:int)->float:
+        if account_num in self.account:
+            account = self.account.get(account_num)
+            return account.balance
+        else:
+            raise ValueError(f"Haveing trouble finding this account")
