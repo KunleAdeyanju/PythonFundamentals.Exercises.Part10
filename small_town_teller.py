@@ -5,12 +5,19 @@ class Person:
         self.first_name = first_name
         self.last_name = last_name
 
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} is a person with id {self.id}"
+
 class Account:
+    
     def __init__(self, number, type, owner, balance):
         self.number = number            # has to be unique
         self.type = type
         self.owner = owner
         self.balance = balance
+
+    def __str__(self):
+        return f"{self.owner.first_name} is the owner of \naccount number: {self.number}\nType: {self.type}\nBalance: {self.balance}"
 
 class Bank:
     def __init__(self):
@@ -31,7 +38,7 @@ class Bank:
         elif account.number in self.account:
             raise ValueError(f"{account.number} is already being used by another account")
         else:
-            self.new_account[account.number] = account
+            self.account[account.number] = account
 
     def remove_account(self, account: Account) -> None:
         if account.number not in self.account:
@@ -42,7 +49,7 @@ class Bank:
     def deposit(self, account_num: int, depo: float):
         if account_num in self.account:
             account = self.account.get(account_num)
-            account.balance += round(depo, 2)
+            account.balance = round (account.balance + depo, 2)
         else:
             raise ValueError(f"Haveing trouble finding this account")
  
@@ -50,7 +57,7 @@ class Bank:
     def withdrawal(self, account_num: int, withd: float):
         if account_num in self.account:
             account = self.account.get(account_num)
-            account.balance -= round(withd, 2)
+            account.balance = round (account.balance - withd, 2)
         else:
             raise ValueError(f"Haveing trouble finding this account")
 
