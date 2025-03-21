@@ -13,11 +13,24 @@ class Account:
         self.balance = balance
 
 class Bank:
-    def new_customer():
-        pass
+    def __init__(self):
+        self.customer: dict[int, Person] = dict()
+        self.account: dict[int, Account] = dict()
+        
 
-    def new_account():
-        pass
+    def new_customer(self, customer: Person) -> None:
+        if customer.id in self.customer:
+            raise ValueError(f"This id {customer.id} already exists in the sytem")
+        else:
+            self.customer[customer.id] = customer
+
+
+    def new_account(self, account: Account) -> None:
+        if account.owner not in self.account:
+            # raise
+            pass
+        else:
+            self.new_account[]
 
     def remove_account():
         pass
